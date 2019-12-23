@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Habit } from '../../habit.model';
+import { HabitService } from '../../habit.service';
 
 @Component({
   selector: 'app-habit-item',
@@ -9,14 +10,13 @@ import { Habit } from '../../habit.model';
 export class HabitItemComponent implements OnInit {
 
   @Input() habit: Habit;
-  @Output() habitSelected = new EventEmitter<void>();
-  constructor() { }
+  constructor(private habitService: HabitService) { }
 
   ngOnInit() {
   }
 
   onSelected() {
-    this.habitSelected.emit();
+    this.habitService.habitSelected.emit(this.habit);
   }
 
 }

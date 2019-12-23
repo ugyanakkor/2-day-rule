@@ -8,7 +8,6 @@
     <div class="col-xs-12">
         <app-habit-item
         *ngFor="let habitEl of habits"
-        [habit]="habitEl"
-        (habitSelected)="onHabitSelected(habitEl)"></app-habit-item>
+        [habit]="habitEl"></app-habit-item>
     </div>
 </div>
