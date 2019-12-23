@@ -8,6 +8,8 @@ import { HabitListComponent } from './habits/habit-list/habit-list.component';
 import { HabitDetailComponent } from './habits/habit-detail/habit-detail.component';
 import { HabitItemComponent } from './habits/habit-list/habit-item/habit-item.component';
 import { HabitEditComponent } from './habits/habit-list/habit-edit/habit-edit.component';
+import { AuthComponent } from './auth/auth.component';
+import { DropdownDirective } from './habits/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { HabitEditComponent } from './habits/habit-list/habit-edit/habit-edit.co
     HabitListComponent,
     HabitDetailComponent,
     HabitItemComponent,
-    HabitEditComponent
+    HabitEditComponent,
+    AuthComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule

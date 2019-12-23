@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Habit } from '../habit.model';
 
 @Component({
   selector: 'app-habit-detail',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./habit-detail.component.css']
 })
 export class HabitDetailComponent implements OnInit {
-
+  @Input() habit: Habit;
   constructor() { }
 
   ngOnInit() {

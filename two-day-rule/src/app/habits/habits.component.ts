@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Habit } from './habit.model';
 
 @Component({
   selector: 'app-habits',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./habits.component.css']
 })
 export class HabitsComponent implements OnInit {
-
+  selectedHabit: Habit;
   constructor() { }
 
   ngOnInit() {

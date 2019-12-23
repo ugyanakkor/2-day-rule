@@ -1,13 +1,13 @@
 <nav class="navbar navbar-dark bg-success">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="#" class="navbar-brand">Two day rule</a>
+            <a href="#" (click)="onSelect('habit')" class="navbar-brand">Two day rule</a>
         </div>
 
         <div class="navbar-default">
             <ul class="nav navbar-nav">
-                <li><a href="#">Habits</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="#" (click)="onSelect('habit')">Habits</a></li>
+                <li><a href="#" (click)="onSelect('auth')">Login</a></li>
             </ul>
         </div>
     </div>

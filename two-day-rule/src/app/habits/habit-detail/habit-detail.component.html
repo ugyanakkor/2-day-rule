@@ -5,13 +5,16 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h1>Habit name</h1>
+        <h1>{{ habit.name }}</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle">
+        <div class="btn-group"
+        appDropdown>
+            <button 
+                type="button" 
+                class="btn btn-primary dropdown-toggle">
                 Manage Habit <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
@@ -23,6 +26,11 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Description
+            {{ habit.description }}
     </div>
+</div>
+<div class="row">
+        <div class="col-xs-12">
+                {{ habit.progress }}
+        </div>
 </div>
