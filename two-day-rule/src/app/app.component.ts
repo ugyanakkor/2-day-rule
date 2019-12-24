@@ -8,7 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   loadedFeature = 'habit';
 
-  onNavigate(feature: string) {
-    this.loadedFeature = feature;
-  }
 }

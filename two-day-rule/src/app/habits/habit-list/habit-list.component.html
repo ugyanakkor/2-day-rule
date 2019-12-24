@@ -1,13 +1,14 @@
 <div class="row">
     <div class="col-xs-12">
-        <button class="btn btn-success">New Habit</button>
+        <button class="btn btn-success" (click)="onNewHabit()">New Habit</button>
     </div>
 </div>
 <hr>
 <div class="row">
     <div class="col-xs-12">
         <app-habit-item
-        *ngFor="let habitEl of habits"
-        [habit]="habitEl"></app-habit-item>
+        *ngFor="let habitEl of habits; let i = index"
+        [habit]="habitEl"
+        [index]="i"></app-habit-item>
     </div>
 </div>

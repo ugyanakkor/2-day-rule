@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Habit } from '../habit.model';
+import { HabitService } from '../habit.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-habit-detail',
@@ -7,10 +10,26 @@ import { Habit } from '../habit.model';
   styleUrls: ['./habit-detail.component.css']
 })
 export class HabitDetailComponent implements OnInit {
-  @Input() habit: Habit;
-  constructor() { }
+  habit: Habit;
+  id: number;
+
+  constructor(private habitService: HabitService,
+              private route: ActivatedRoute,
+              private router: Router) { 
+}
 
   ngOnInit() {
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.id = +params['id'];  
+        this.habit = this.habitService.getHabit(this.id);
+      }
+    );
+  }
+
+  onEditHabit() {
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
 }

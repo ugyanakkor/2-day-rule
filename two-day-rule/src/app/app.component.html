@@ -1,9 +1,8 @@
-<app-header (featureSelected)="onNavigate($event)"></app-header>
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-habits *ngIf="loadedFeature === 'habit'"></app-habits>
-      <app-auth *ngIf="loadedFeature === 'auth'"></app-auth>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

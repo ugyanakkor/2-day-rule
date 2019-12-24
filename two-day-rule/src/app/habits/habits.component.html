@@ -3,11 +3,6 @@
         <app-habit-list></app-habit-list>
     </div>
     <div class="col-md-7">
-        <app-habit-detail
-        *ngIf="selectedHabit; else infoText"
-        [habit]="selectedHabit"></app-habit-detail>
-        <ng-template #infoText>
-            <p>Please select a Habit!</p>
-        </ng-template>
+        <router-outlet></router-outlet>
     </div>
 </div>
