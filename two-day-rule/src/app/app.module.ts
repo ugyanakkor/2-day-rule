@@ -12,6 +12,8 @@ import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './habits/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { HabitsStartComponent } from './habits/habits-start/habits-start.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {HabitService} from './habits/habit.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { HabitsStartComponent } from './habits/habits-start/habits-start.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [HabitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,4 +32,8 @@ export class HabitDetailComponent implements OnInit {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
+  onDeleteHabit() {
+    this.habitService.deleteHabit(this.id);
+    this.router.navigate(['/habits'], {relativeTo: this.route});
+  }
 }

@@ -6,19 +6,18 @@ import { HabitService } from './habit.service';
   selector: 'app-habits',
   templateUrl: './habits.component.html',
   styleUrls: ['./habits.component.css'],
-  providers: [HabitService]
 })
 export class HabitsComponent implements OnInit {
   selectedHabit: Habit;
   constructor(private habitService: HabitService) { }
 
   ngOnInit() {
-    this.habitService.habitSelected
+    /*this.habitService.habitSelected
     .subscribe(
       (habit: Habit) => {
         this.selectedHabit = habit;
       }
-    )
+    )*/
   }
 
 }

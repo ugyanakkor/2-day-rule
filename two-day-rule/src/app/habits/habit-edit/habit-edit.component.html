@@ -1,20 +1,35 @@
 <div class="row">
     <div class="col-xs-12">
-        <form>
+        <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
             <div class="row">
-                <div class="col-sm-5 form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" class="form-control">
+                <div class="col-xs-12 form-group">
+                    <label for="name" >Name</label>
+                    <input type="text" 
+                    id="name"
+                    class="form-control"
+                    formControlName="name" >
                 </div>
-                <div class="col-sm-2">
-                    <label for="description">Description</label>
-                    <input type="text" id="name" class="form-control">
+                <div class="col-xs-12 form-group">
+                    <label for="description" >Description</label>
+                    <input type="text" 
+                    id="description" 
+                    class="form-control"
+                    formControlName="description" >
+                </div>
+                <div class="col-xs-12 form-group">
+                    <label for="progress" >Progress</label>
+                    <input type="text" 
+                    id="progress" 
+                    class="form-control"
+                    formControlName="progress" >
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <button class="btn btn-success" type="button">Edit</button>
-                    <button class="btn btn-danger" type="button">Delete</button>
+                    <button type="submit"  
+                    class="btn btn-success" 
+                    [disabled]="!habitForm.valid">Save</button>
+                    <button class="btn btn-danger" type="button" (click)="onCancel()">Cancel</button>
                 </div>
             </div>
         </form>
