@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HabitsStartComponent } from './habits/habits-start/habits-start.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HabitService} from './habits/habit.service';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {HabitService} from './habits/habit.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FullCalendarModule
   ],
   providers: [HabitService],
   bootstrap: [AppComponent]

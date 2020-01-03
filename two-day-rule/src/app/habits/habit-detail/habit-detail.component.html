@@ -34,3 +34,23 @@
                 {{ habit.progress }}
         </div>
 </div>
+<div class="row">
+    <div class="col-xs-12 app-calendar">
+        <full-calendar 
+        #calendar
+        defaultView="dayGridMonth"
+        [header]="{
+            left: 'prev next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        }"
+        [plugins]="calendarPlugins"
+        [weekends]="calendarWeekends"
+        
+        (dateClick)="handleDateClick($event)"
+        [events]="calendarEvents"
+        id="calendar">
+            
+        </full-calendar>
+    </div>
+</div>
