@@ -1,15 +1,17 @@
 import { EventsForCalendar } from './events.model';
+import { EventInput } from '@fullcalendar/core';
 
 export class Habit {
     public name: string;
     public description: string;
-    public progress: string;
-    public calendarEventsFromHabit: EventsForCalendar[];
+    public progress: number;
+    //public calendarEventsFromHabit: EventsForCalendar[];
+    public events: EventInput[];
 
-    constructor(name: string, description: string, progress:string, calendarEventsFromHabit: EventsForCalendar[]){
+    constructor(name: string, description: string, progress:number, events: EventInput[]){
         this.name = name;
         this.description = description;
         this.progress = progress;
-        this.calendarEventsFromHabit = calendarEventsFromHabit;
+        this.events = events;
     }
 }

@@ -102,7 +102,7 @@ export class HabitEditComponent implements OnInit {
 
   let habitName = '';
   let habitDescription = '';
-  let habitProgress = '';
+  let habitProgress = 0;
   let habitCalendar = new EventsForCalendar[''];
   
   if(this.editMode) {

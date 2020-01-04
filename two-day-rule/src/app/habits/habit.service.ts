@@ -1,7 +1,7 @@
 import { Habit } from './habit.model';
 //import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Calendar } from '@fullcalendar/core';
+import { Calendar, EventInput } from '@fullcalendar/core';
 import timeGridMonth from '@fullcalendar/daygrid'
 import { EventsForCalendar } from './events.model';
 
@@ -13,11 +13,15 @@ export class HabitService {
   //private temp: EventsForCalendar[] = [ new EventsForCalendar('2019-12-12', 'red')];
 
     private habits: Habit[] = [
-        new Habit('Edzés', 'Takarodj kondizni', '7/30' , 
-          [ new EventsForCalendar('2020-01-12', 'green'),
-            new EventsForCalendar('2020-01-18', 'red')
-         ]
+        new Habit('Edzés', 'Takarodj kondizni', 2 , 
+           [ 
+             {  start: '2020-01-13', backgroundColor: 'green', rendering:"background" },
+             {  start: '2020-01-14', backgroundColor: 'green', rendering:"background" }
+          ]
         ),
+        new Habit('Olvasás', 'Takarodj olvasni', 1 , 
+        [ {  start: '2020-01-16', backgroundColor: 'green', rendering:"background" } ]
+      ),
       ];
     
       getHabits() {
