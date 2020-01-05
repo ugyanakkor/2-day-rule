@@ -262,6 +262,9 @@ export class HabitDetailComponent implements OnInit {
    //this.calendar.render();
    let habitElem = new Habit(this.habit.name, this.habit.description, this.progressSum, this.calendarEvents);
    this.habitService.updateHabit(this.id, habitElem);
+   const data = this.habitService.getHabits();
+   localStorage.setItem('habits', JSON.stringify(data));
+   this.habitService.setHabits();
    /*console.log(arg);
    console.log(arg.dateStr);
    console.log(this.calendarEvents);*/

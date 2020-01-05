@@ -23,9 +23,36 @@ export class HabitService {
         [ {  start: '2020-01-16', backgroundColor: 'green', rendering:"background" } ]
       ),
       ];
+
+
     
       getHabits() {
-          return this.habits.slice();
+        /*const habitsData = JSON.parse(localStorage.getItem('habits'));
+        console.log('habitsdata:');
+        console.log(habitsData);
+        if(!habitsData){
+          return this.habits.slice(); 
+        }else{
+          this.habits = habitsData; 
+          return this.habits.slice(); 
+        }*/
+       /* const habitsData = JSON.parse(localStorage.getItem('habits'));
+        if(habitsData){
+          this.habits = habitsData;
+        }*/
+        return this.habits.slice(); 
+      }
+
+      setHabits(){
+        const habitsData = JSON.parse(localStorage.getItem('habits'));
+        console.log('habitsdata:');
+        console.log(habitsData);
+        if(!habitsData){
+          return this.habits.slice(); 
+        }else{
+          this.habits = habitsData; 
+          return this.habits.slice(); 
+        }
       }
 
       getHabit(index: number) {

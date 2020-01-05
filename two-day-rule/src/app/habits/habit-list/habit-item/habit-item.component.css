@@ -1,6 +1,15 @@
 a{
     cursor: pointer;
 }
-.active {
-    background-color: #5bc0de !important;
+.active, .active:focus, .active:hover {
+    background-color: #e8e8e8 !important;
+    color: black !important;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-color: black;
+}
+
+p{
+    color: black !important;
 }
