@@ -8,8 +8,10 @@ a{
     border-right: none;
     border-left: none;
     border-color: black;
+    border-radius: 0px;
 }
 
 p{
     color: black !important;
 }
+

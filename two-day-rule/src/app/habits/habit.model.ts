@@ -7,12 +7,14 @@ export class Habit {
     public progress: number;
     //public calendarEventsFromHabit: EventsForCalendar[];
     public events: EventInput[];
+    public habitFail: boolean;
 
-    constructor(name: string, description: string, progress?:number, events?: EventInput[]){
+    constructor(name: string, description: string, progress?:number, events?: EventInput[], habitFail?:boolean){
         this.name = name;
         this.description = description;
         this.progress = progress || 0;
         this.events = events || [];
+        this.habitFail = habitFail || false;
     }
 
 }

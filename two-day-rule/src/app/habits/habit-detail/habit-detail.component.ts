@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Habit } from '../habit.model';
 import { HabitService } from '../habit.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -30,11 +30,7 @@ export class HabitDetailComponent implements OnInit {
       )
     );
   }
- // datum = new Date(Mon Feb 03 2020);
-  dateSort()
-  {
 
-  }
   removeAnEvent(index: number){
     let uj : EventInput[] = [];
     for(let i = 0; i<index; i++){
@@ -260,7 +256,7 @@ export class HabitDetailComponent implements OnInit {
     };*/
 
    //this.calendar.render();
-   let habitElem = new Habit(this.habit.name, this.habit.description, this.progressSum, this.calendarEvents);
+   let habitElem = new Habit(this.habit.name, this.habit.description, this.progressSum, this.calendarEvents, this.failedChallange);
    this.habitService.updateHabit(this.id, habitElem);
    const data = this.habitService.getHabits();
    localStorage.setItem('habits', JSON.stringify(data));
@@ -286,12 +282,14 @@ export class HabitDetailComponent implements OnInit {
 }
 
   ngOnInit() {
+    
     this.route.params
     .subscribe(
       (params: Params) => {
         this.id = +params['id'];  
         this.habit = this.habitService.getHabit(this.id);
         this.progressSum = this.habit.progress;
+        this.failedChallange = this.habit.habitFail;
        // this.calendarEvents = this.calendarEvents.concat({title: 'event 2', start: '2020-01-01'});
       
         /*this.calendar.addEvent( {
