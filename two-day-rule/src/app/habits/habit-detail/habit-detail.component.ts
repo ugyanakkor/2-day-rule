@@ -136,8 +136,30 @@ export class HabitDetailComponent implements OnInit {
         console.log('day3:');
         console.log(dayForDiff3);
         let temp ='';
-        for(let i = 0; i<dateDifferent-1; i++){
+        for(let i = 0; i<dateDifferent-2; i++){
           dayForDiff3++;
+
+          if(dayForDiff3>31 && (monthTemp===1||3||5||7||8||10||12)){
+            dayForDiff3-=31;
+
+            monthTemp+=1;
+            if(monthTemp<10){
+              month = '0'+monthTemp;
+            }
+          }else if(dayForDiff3>30 && (monthTemp===4||6||9||11)){
+            dayForDiff3-=30;
+            monthTemp+=1;
+            if(monthTemp<10){
+              month = '0'+monthTemp;
+            }
+          }else if(dayForDiff3>29 && (monthTemp===2)){
+            dayForDiff3-=29;
+            monthTemp+=1;
+            if(monthTemp<10){
+              month = '0'+monthTemp;
+            }
+          }
+
           if(dayForDiff3.toString().length === 1){
             temp = '0' + dayForDiff3;
           }else{
@@ -189,6 +211,7 @@ export class HabitDetailComponent implements OnInit {
         }
       }*/
       //if(dayDiffMin<=2){
+        
         this.calendarEvents = this.calendarEvents.concat( // creates a new array!
           { 
             title: 'this 2', 
@@ -198,29 +221,13 @@ export class HabitDetailComponent implements OnInit {
           }
         );
 
-        //this.calendarSort();
-
+        this.calendarSort();
+        
       //}
     }else{
       if(this.calendarEvents[index].backgroundColor === 'green' || 'red'){
         this.removeAnEvent(index);
-        /*let uj : EventInput[] = [];
-
-        for(let i = 0; i<index; i++){
-          uj[i]=this.calendarEvents[i];
-        }
-        for(let i = index+1; i<this.calendarEvents.length; i++){
-          uj[i-1]=this.calendarEvents[i];
-        }
-
-        console.log(uj);
-        this.calendarEvents = uj;*/
       }
-      //console.log(index);
-      //console.log(this.calendarEvents[index].backgroundColor);
-      /*if(this.calendarEvents[index].backgroundColor === 'red'){
-        this.removeAnEvent(index);
-      }*/
     }
 
     this.dayValidator();
