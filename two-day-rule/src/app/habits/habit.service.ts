@@ -1,52 +1,25 @@
 import { Habit } from './habit.model';
-//import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Calendar, EventInput } from '@fullcalendar/core';
-import timeGridMonth from '@fullcalendar/daygrid'
-import { EventsForCalendar } from './events.model';
 
 export class HabitService {
     habitsChanged = new Subject<Habit[]>();
 
-    //habitSelected = new EventEmitter<Habit>();
-
-  //private temp: EventsForCalendar[] = [ new EventsForCalendar('2019-12-12', 'red')];
-
     private habits: Habit[] = [
-        new Habit('Edzés', 'Takarodj kondizni', 2 , 
+        new Habit('Edzés', 'Kétszer végtelen és haza mehetsz', 2 , 
            [ 
              {  start: '2020-01-13', backgroundColor: 'green', rendering:"background" },
              {  start: '2020-01-14', backgroundColor: 'green', rendering:"background" }
           ]
         ),
-        new Habit('Olvasás', 'Takarodj olvasni', 1 , 
-        [ {  start: '2020-01-16', backgroundColor: 'green', rendering:"background" } ]
-      ),
       ];
-
-
     
       getHabits() {
-        /*const habitsData = JSON.parse(localStorage.getItem('habits'));
-        console.log('habitsdata:');
-        console.log(habitsData);
-        if(!habitsData){
-          return this.habits.slice(); 
-        }else{
-          this.habits = habitsData; 
-          return this.habits.slice(); 
-        }*/
-       /* const habitsData = JSON.parse(localStorage.getItem('habits'));
-        if(habitsData){
-          this.habits = habitsData;
-        }*/
         return this.habits.slice(); 
       }
 
+      //localStorage
       setHabits(){
         const habitsData = JSON.parse(localStorage.getItem('habits'));
-        console.log('habitsdata:');
-        console.log(habitsData);
         if(!habitsData){
           return this.habits.slice(); 
         }else{

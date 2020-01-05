@@ -2,14 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HabitService } from '../habit.service';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGrigPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction'; // for dateClick
 import { FullCalendarComponent } from '@fullcalendar/angular';
-import { EventInput, Calendar } from '@fullcalendar/core';
-import timeGridMonth from '@fullcalendar/daygrid';
+import { EventInput } from '@fullcalendar/core';
 import { Habit } from '../habit.model';
-import { EventsForCalendar } from '../events.model';
 
 
 @Component({
@@ -21,9 +16,6 @@ export class HabitEditComponent implements OnInit {
 
   @ViewChild('calendar', {static: false}) calendarComponent: FullCalendarComponent; // the #calendar in the template
   
-
-
-
   id: number;
   editMode = false;
   habitForm: FormGroup;
@@ -57,6 +49,9 @@ export class HabitEditComponent implements OnInit {
       this.habitService.updateHabit(this.id, newHabit);
     } else {
       this.habitService.addHabit(newHabit);
+      const data = this.habitService.getHabits();
+      localStorage.setItem('habits', JSON.stringify(data));
+      this.habitService.setHabits();
     }
     this.onCancel();
   }
@@ -78,7 +73,6 @@ export class HabitEditComponent implements OnInit {
     habitDescription = habit.description;
     habitProgress = habit.progress;
     habitEvents = habit.events;
-   // habitCalendar = habit.calendarEventsFromHabit;
   }
 
   this.habitForm = new FormGroup({

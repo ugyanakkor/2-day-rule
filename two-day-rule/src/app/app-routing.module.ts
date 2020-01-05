@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HabitsComponent } from './habits/habits.component';
-import { AuthComponent } from './auth/auth.component';
 import { HabitsStartComponent } from './habits/habits-start/habits-start.component';
 import { HabitDetailComponent } from './habits/habit-detail/habit-detail.component';
 import { HabitEditComponent } from './habits/habit-edit/habit-edit.component';

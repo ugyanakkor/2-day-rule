@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output,EventEmitter, HostListener } from '@angular/core';
 import { Habit } from '../../habit.model';
-import { HabitDetailComponent } from '../../habit-detail/habit-detail.component';
 
 @Component({
   selector: 'app-habit-item',
