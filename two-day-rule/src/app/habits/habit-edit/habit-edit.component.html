@@ -16,13 +16,6 @@
                     class="form-control"
                     formControlName="description" >
                 </div>
-                <div class="col-xs-12 form-group">
-                    <label for="progress" >Progress</label>
-                    <input type="text" 
-                    id="progress" 
-                    class="form-control"
-                    formControlName="progress" >
-                </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
@@ -33,24 +26,5 @@
                 </div>
             </div>
         </form>
-
-        <div class="row">
-                <div class="col-xs-12 app-calendar form-group">
-                    <full-calendar
-                        #calendar
-                        defaultView="dayGridMonth"
-                        [header]="{
-                            left: 'prev next today',
-                            center: 'title',
-                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-                        }"
-                        [plugins]="calendarPlugins"
-                        [weekends]="calendarWeekends"
-                        [events]="calendarEvents"
-                        (dateClick)="handleDateClick($event)"
-                        id="calendar"
-                        ></full-calendar>
-                </div>
-            </div>
     </div>
 </div>

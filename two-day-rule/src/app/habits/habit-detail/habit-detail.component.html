@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-xs-12">
-
+        <!--<app-challenge [message]="unsuccess" *ngIf="failedChallange" (close)="onHandleFail()"></app-challenge>-->
+        <app-challenge [message]="success" *ngIf="progressSum>=30" (close)="onHandleSuccess()"></app-challenge>
     </div>
 </div>
 <div class="row">
@@ -31,7 +32,7 @@
 </div>
 <div class="row">
         <div class="col-xs-12">
-                {{ habit.progress }}
+                {{ progressSum }}/30
         </div>
 </div>
 <div class="row">
@@ -52,5 +53,6 @@
         id="calendar">
             
         </full-calendar>
+        <p class="alert" *ngIf="failedChallange">Sajnos nem sikerült a 30 napig tartanod a 2 day rulet :(</p>
     </div>
 </div>

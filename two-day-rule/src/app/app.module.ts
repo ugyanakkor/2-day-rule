@@ -15,6 +15,7 @@ import { HabitsStartComponent } from './habits/habits-start/habits-start.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import {HabitService} from './habits/habit.service';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { ChallengeComponent } from './habits/challenge/challenge.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     HabitEditComponent,
     AuthComponent,
     DropdownDirective,
-    HabitsStartComponent
+    HabitsStartComponent,
+    ChallengeComponent
   ],
   imports: [
     BrowserModule,

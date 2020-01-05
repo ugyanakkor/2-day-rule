@@ -19,8 +19,10 @@ export class HabitDetailComponent implements OnInit {
   calendarEvents: EventInput[] = [
   //  { title: 'this', start: '2020-01-13' }
   ];
-  progress:number;
-  
+  progressSum:number;
+  failedChallange = false;
+  unsuccess = "Sajnos nem sikerült a 30 napig betartanod a 2 day rule-t :(";
+  success = "Gratulálunk, sikerült a 30 napig betartanod a 2 day rule-t! :)";
   //calendar = new Calendar(document.getElementById('calendar'), {plugins: [timeGridMonth]});
   calendarSort(){
     this.calendarEvents.sort( (a,b) => (
@@ -28,13 +30,11 @@ export class HabitDetailComponent implements OnInit {
       )
     );
   }
-
-
-  oneDayDiff(){
-    this.calendarSort();
+ // datum = new Date(Mon Feb 03 2020);
+  dateSort()
+  {
 
   }
-
   removeAnEvent(index: number){
     let uj : EventInput[] = [];
     for(let i = 0; i<index; i++){
@@ -46,14 +46,58 @@ export class HabitDetailComponent implements OnInit {
     this.calendarEvents = uj;
   }
 
+  redCounter(){
+    this.calendarSort();
+    let lastindex = this.calendarEvents.length-1;
+    let date1: Date = new Date(this.calendarEvents[0].start.toString());
+    let dateLast: Date = new Date(this.calendarEvents[lastindex].start.toString());
+    console.log(dateLast);
+    let dateDifferent = (Number(dateLast.valueOf()) - Number(date1.valueOf()));
+    console.log(dateDifferent);
+    dateDifferent = (dateDifferent/1000/60/60/24);
+    dateDifferent = Number( dateDifferent.toPrecision(2));
+    this.progressSum = dateDifferent;
+    console.log("dateDiff:");
+    console.log(dateDifferent);
+
+    this.failedChallange = false;
+    let redCounter = 0;
+    for(let i = 0; i<this.calendarEvents.length; i++){
+      if(this.calendarEvents[i].backgroundColor==='red'){
+        redCounter++;
+      }else if(this.calendarEvents[i].backgroundColor === 'green' && redCounter<=1){
+        redCounter = 0;
+      }
+      if(redCounter == 2){
+        this.failedChallange = true;
+      }
+    }
+    
+
+    if(this.failedChallange){
+      this.progressSum = 0;
+    }
+    else{
+      this.progressSum = dateDifferent + 1;
+    }
+  }
+
+  /*onHandleFail(){
+    this.failedChallange=null;
+  }*/
+  onHandleSuccess(){
+    this.progressSum = null;
+  }
   dayValidator(){
-    this.progress=1;
     console.log("dayvalidator");
     this.calendarSort();
     let lastindex = this.calendarEvents.length-1;
     for(let i = 0; i< this.calendarEvents.length-1; i++){
       let date1: Date = new Date(this.calendarEvents[i].start.toString());
       let date2: Date = new Date(this.calendarEvents[i+1].start.toString());
+
+      this.calendarSort();
+
       let dateDifferent = date2.valueOf()-date1.valueOf();
       dateDifferent = dateDifferent/1000/60/60/24; //calculate the differentia of 2 date
 
@@ -65,29 +109,45 @@ export class HabitDetailComponent implements OnInit {
         month = '0'+monthTemp;
       }
 
-      let day = date1.getDate();
+      let day = date1.getDate().toString();
+
+      if(day.length === 1){
+        day = '0'+day;
+      }
+
       
       // console.log(year, month, day);
-      if(dateDifferent === 1){
-        this.progress+=1;
+      let dayForDiff2 = (date1.getDate()+1).toString();
+      if(dayForDiff2.length === 1){
+        dayForDiff2 = '0'+dayForDiff2;
       }
 
       if(dateDifferent === 2){
-        let datestring = year + "-" + month + "-" + (date1.getDate()+1);
+        let datestring = year + "-" + month + "-" + (dayForDiff2);
         this.calendarEvents = this.calendarEvents.concat({
           title: 'uj',
           start: datestring,
           backgroundColor: 'red',
           rendering: 'background'
         });
-        this.progress += 2;
       }
 
-
+   
 
       if(dateDifferent>2){
-        for(let i = 0; i<dateDifferent; i++){
-          let datestring = year + "-" + month + "-" + (day = day+1);
+        let dayForDiff3 = date1.getDate();
+
+        console.log('day3:');
+        console.log(dayForDiff3);
+        let temp ='';
+        for(let i = 0; i<dateDifferent-1; i++){
+          dayForDiff3++;
+          if(dayForDiff3.toString().length === 1){
+            temp = '0' + dayForDiff3;
+          }else{
+            temp = dayForDiff3.toString();
+          }
+          let datestring = year + "-" + month + "-" + temp;
           this.calendarEvents = this.calendarEvents.concat({
             title: 'uj',
             start: datestring,
@@ -96,21 +156,12 @@ export class HabitDetailComponent implements OnInit {
           });
         }
       }
-     // console.log(this.calendarEvents);
-      for(let i=1;i<this.calendarEvents.length; i++){
-        if(this.calendarEvents[i-1].start===this.calendarEvents[i].start){
-          if(this.calendarEvents[i-1].backgroundColor==='red'){
-            this.removeAnEvent(i-1);
-          }else {
-            this.removeAnEvent(i);
-          }
-        }
-      }
-      //i+=dateDifferent;
 
-      this.calendarSort();
-      //console.log(dateDifferent);
     }
+
+   
+
+
   }
 
   
@@ -177,7 +228,7 @@ export class HabitDetailComponent implements OnInit {
     }
 
     this.dayValidator();
-    
+    this.redCounter();
   
 
 
@@ -209,7 +260,7 @@ export class HabitDetailComponent implements OnInit {
     };*/
 
    //this.calendar.render();
-   let habitElem = new Habit(this.habit.name, this.habit.description, this.progress, this.calendarEvents);
+   let habitElem = new Habit(this.habit.name, this.habit.description, this.progressSum, this.calendarEvents);
    this.habitService.updateHabit(this.id, habitElem);
    /*console.log(arg);
    console.log(arg.dateStr);
@@ -237,6 +288,7 @@ export class HabitDetailComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];  
         this.habit = this.habitService.getHabit(this.id);
+        this.progressSum = this.habit.progress;
        // this.calendarEvents = this.calendarEvents.concat({title: 'event 2', start: '2020-01-01'});
       
         /*this.calendar.addEvent( {

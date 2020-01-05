@@ -8,10 +8,11 @@ export class Habit {
     //public calendarEventsFromHabit: EventsForCalendar[];
     public events: EventInput[];
 
-    constructor(name: string, description: string, progress:number, events: EventInput[]){
+    constructor(name: string, description: string, progress?:number, events?: EventInput[]){
         this.name = name;
         this.description = description;
-        this.progress = progress;
-        this.events = events;
+        this.progress = progress || 0;
+        this.events = events || [];
     }
+
 }

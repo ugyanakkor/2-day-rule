@@ -14,7 +14,7 @@ const appRoutes: Routes = [
         { path: ':id', component: HabitDetailComponent },
         { path: ':id/edit', component: HabitEditComponent}
     ] },
-    { path: 'auth', component: AuthComponent }
+    { path: '**', redirectTo: '/habits', pathMatch: 'full' }
 ];
 
 @NgModule({
